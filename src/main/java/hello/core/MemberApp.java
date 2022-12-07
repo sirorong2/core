@@ -8,24 +8,22 @@ import hello.core.order.Order;
 import hello.core.order.OrderService;
 import hello.core.order.OrderServiceImpl;
 
-public class OrderApp {
+public class MemberApp {
+
     public static void main(String[] args) {
 
         AppConfig appConfig = new AppConfig();
-        MemberService memberService = appConfig.memberService();
-        OrderService orderService = appConfig.orderService();
 
+        MemberService memberService = appConfig.memberService();
 //        MemberService memberService = new MemberServiceImpl();
-//        OrderService orderService = new OrderServiceImpl();
 
         Long memberId = 1L;
         Member member = new Member(memberId, "memberA", Grade.VIP);
         memberService.join(member);
 
-        Order order = orderService.createOrder(memberId, "itemA", 10000);
+        Member findMember = memberService.findMember(1L);
+        System.out.println("findMember = " + findMember);
+        System.out.println("member = " + member);
 
-        System.out.println("OrderApp.main");
-        System.out.println("order = " + order);
-        System.out.println("order = " + order.calculatePrice());
     }
 }
